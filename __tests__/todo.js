@@ -11,7 +11,7 @@ const yesterday = formattedDate(
 const tomorrow = formattedDate(
   new Date(new Date().setDate(dateToday.getDate() + 1))
 )
-describe("TodoList Test Suite", () =>{
+describe("TodoList Test Suit", () =>{
     beforeAll(() =>{
         add(
             {
