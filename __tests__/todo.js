@@ -1,11 +1,11 @@
 /* eslint-disable no-undef */
 const todoList = require("../todo");
-const { all, markAsComplete, add, overdue, dueLater, dueToday } = todoList();
+const { all, markCompleted, add, overdue, dueLater, dueToday } = todoList();
 const formattedDate = (d) => {
   return d.toISOString().split("T")[0];
 };
 let dateToday = new Date();
-const today = formattedDate(dateToday);
+const thisDay = formattedDate(dateToday);
 const yesterday = formattedDate(
   new Date(new Date().setDate(dateToday.getDate() - 1))
 );
@@ -17,10 +17,10 @@ describe("TodoList Test Suite", () => {
     add({
       title: "Test todo",
       completed: false,
-      dueDate: today,
+      dueDate: thisDay,
     });
   });
-  test("Should add new todo", () => {
+  test("add new todo", () => {
     add(
       {
         title: "Test todo",
@@ -43,21 +43,21 @@ describe("TodoList Test Suite", () => {
 
     expect(all.length).toBe(todoItemCount + 1);
   });
-  test("Should mark a todo as complete", () => {
+  test("checking a todo as complete", () => {
     expect(all[0].completed).toBe(false);
-    markAsComplete(0);
+    markCompleted(0);
     expect(all[0].completed).toBe(true);
   });
-  test("Should check retrieval of overdue items", () => {
-    a = overdue();
-    expect(all[2].dueDate).toBe(a[0]["dueDate"]);
+  test("hecking retrieval of overdue items", () => {
+    let todoitem = overdue();
+    expect(all[2].dueDate).toBe(todoitem[0]["dueDate"]);
   });
-  test("Should check retrieval of duetoday items", () => {
-    a = dueToday();
-    expect(all[0].dueDate).toBe(a[0]["dueDate"]);
+  test("checking retrieval of items due thisDay", () => {
+    let todoitem = dueToday();
+    expect(all[0].dueDate).toBe(todoitem[0]["dueDate"]);
   });
-  test("Should check retrieval of due later items", () => {
-    a = dueLater();
-    expect(all[1].dueDate).toBe(a[0]["dueDate"]);
+  test("checking retrieval of due later items", () => {
+    let todoitem = dueLater();
+    expect(all[1].dueDate).toBe(todoitem[0]["dueDate"]);
   });
 });
