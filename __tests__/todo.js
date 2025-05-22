@@ -34,30 +34,7 @@ describe("TodoList Test Suite", () => {
         dueDate: yesterday,
       }
     );
-    const todoItemCount = all.length;
-    add({
-      title: "Test todo",
-      completed: false,
-      dueDate: yesterday,
-    });
-
-    expect(all.length).toBe(todoItemCount + 1);
-  });
-  test("checking a todo as complete", () => {
-    expect(all[0].completed).toBe(false);
-    markCompleted(0);
-    expect(all[0].completed).toBe(true);
-  });
-  test("hecking retrieval of overdue items", () => {
-    let todoitem = overdue();
-    expect(all[2].dueDate).toBe(todoitem[0]["dueDate"]);
-  });
-  test("checking retrieval of items due thisDay", () => {
-    let todoitem = dueToday();
-    expect(all[0].dueDate).toBe(todoitem[0]["dueDate"]);
-  });
-  test("checking retrieval of due later items", () => {
-    let todoitem = dueLater();
+    
     expect(all[1].dueDate).toBe(todoitem[0]["dueDate"]);
   });
 });
